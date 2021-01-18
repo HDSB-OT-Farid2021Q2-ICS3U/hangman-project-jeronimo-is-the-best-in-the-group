@@ -102,6 +102,10 @@ print(x)
 guess = []
 userinput = str(input("Guess a letter: "))
 #User Inputs Letters
+
+
+#Takes an input from the user and determines whether they are trying to guess the entire word
+
 while True:
     if len(userinput)>=2:
         if userinput==x:
