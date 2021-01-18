@@ -108,7 +108,7 @@ userinput = str(input("Guess a letter: "))
 
 while True:
     if len(userinput)>=2:
-        if userinput==x:
+        if userinput==words:
             print("Correct!, The word was",x)
             replay = str(input(("Would you like to play again? Y/N: ")))
             if  replay.lower()=="n":
@@ -116,15 +116,15 @@ while True:
             elif replay.lower()=="y":
                 break
                 hangman()
-        elif userinput!=x:
+        elif userinput!=words:
             print("Wrong!")
             #Function for drawing arm
 q = []
 def empty() :
-    for i in range(0 , len(x)):
+    for a in range(0 , len(x)):
         q.append(" ")
 # find if letter is in the word and for those that arentnare replaced with blank
-emptyview = [i if i in guess else ' ' for i in x ]
+emptyview = [i if i in guess else ' ' for i in words ]
 
 print(emptyview)
 easy()
