@@ -3,8 +3,9 @@ import random
 from dictionary import _dict
 
 red = "\033[91m"
-yellow = ""
+yellow = "\033[1;33m"
 green = "\033[92m"
+
 end = "\033[0m"
 
 
@@ -166,7 +167,7 @@ def hangman():
     print("\n\n" + "-" * 10, "menu", "-" * 10)
     print("|", green, "Easy".center(20), end, "|")
     print("|" + "-" * 24 + "|")
-    print("|", "Medium".center(22), "|")
+    print("|",yellow, "Medium".center(20), end, "|")
     print("|" + "-" * 24 + "|")
     print("|", red, "Hard".center(20), end, "|")
     print("-" * 26)
@@ -218,12 +219,12 @@ def hangman():
                 if userinput==word:
                     print("Correct!, The word was",word)
                     replay = str(input(("Would you like to play again? Y/N: ")))
-
                     if  replay.lower()=="n":
                         break
                     elif replay.lower()=="y":
                         break
                         hangman()
+
                 elif userinput!=word:
                     print("Wrong!")
                     lives -= 1
@@ -269,7 +270,9 @@ def hangman():
                 if emptyview == list(word):
                     print("".join(emptyview))
                     print("You won!")
-                    break 
+                   
+                    break
+
 
     elif difficulty == "medium":
         print("You choice difficulty: Medium, this is considered \"normal\" mode.\n")
