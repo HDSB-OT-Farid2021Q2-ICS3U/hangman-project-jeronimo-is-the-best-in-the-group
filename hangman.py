@@ -1,6 +1,6 @@
 import os
 import random
-
+from dictionary import _dict
 
 red = "\033[91m"
 yellow = ""
