@@ -97,10 +97,11 @@ def hangman():
         print("Oh you trying Hard mode I see? Good luck chief!\n")
 
 
-x = random.choice(_dict)
-print(x)
+y = random.choice(_dict)
+print(y)
 guess = []
 userinput = str(input("Guess a letter: "))
+x = "canada"
 #User Inputs Letters
 
 
