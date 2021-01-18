@@ -97,17 +97,32 @@ def hangman():
         print("Oh you trying Hard mode I see? Good luck chief!\n")
 
 
-y = random.choice(_dict)
-print(y)
-guess = []
-userinput = str(input("Guess a letter: "))
-x = "canada"
+
 #User Inputs Letters
 
 
 #Takes an input from the user and determines whether they are trying to guess the entire word
 
+   
+          
+            #Function for drawing arm
+q = []
+def empty() :
+    for i in range(0 , len(x)):
+        q.append(" ")
+# find if letter is in the word and for those that arentnare replaced with blank
+
+
+
+easy()
+hangman()
+
+y = random.choice(_dict)
+guess = []
+x = "canada"
+
 while True:
+    userinput = str(input("Guess a letter: "))
     if len(userinput)>=2:
         if userinput==words:
             print("Correct!, The word was",x)
@@ -119,15 +134,13 @@ while True:
                 hangman()
         elif userinput!=words:
             print("Wrong!")
-            #Function for drawing arm
-q = []
-def empty() :
-    for a in range(0 , len(x)):
-        q.append(" ")
-# find if letter is in the word and for those that arentnare replaced with blank
-emptyview = [i if i in guess else ' ' for i in words ]
+    elif len(userinput)==1:
+        guess.append(userinput) 
+        emptyview = [i if i in guess else ' ' for i in x ] 
+        if emptyview == list(x):
+            print(emptyview)
+            print("You won!")
+            break   
+        
 
-print(emptyview)
-easy()
-hangman()
 
