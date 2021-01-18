@@ -7,7 +7,7 @@ yellow = ""
 green = "\033[92m"
 end = "\033[0m"
 
-words = ["fuck", "hello", "canada", "banana"]
+
 
 def lives6():
     print("     _______________")
@@ -130,6 +130,7 @@ def lives0():
     print("     |")
     print("-----------")
 
+ 
 #---------------------------------------------------------------------------------------------------------------------------------------
 #---------------------------------------------------------------------------------------------------------------------------------------
 #---------------------------------------------------------------------------------------------------------------------------------------
@@ -147,7 +148,7 @@ def hangman():
     print("|", "Windows".center(22), "|")
     print("-" * 26)
 
-    operatingsys = input("Firstly, are you using a Unix based system (mac / linux) or windows?\n")
+    operatingsys = input("Firstly, are you using a Unix based system (mac / linux) or windows?\n\n")
     while True:
         if operatingsys.lower() == "unix":
             clear = lambda: os.system('clear')
@@ -170,7 +171,7 @@ def hangman():
     print("|", red, "Hard".center(20), end, "|")
     print("-" * 26)
 
-    difficulty = input("Now, what would you like the game difficulty to be set at? easy, medium, or hard?\n")
+    difficulty = input("Now, what would you like the game difficulty to be set at? easy, medium, or hard?\n\n")
     while True:
         if difficulty.lower() == "easy" or difficulty.lower() == "medium" or difficulty.lower() == "hard":
             break
@@ -187,19 +188,45 @@ def hangman():
         guess = []
         lives6()
         
-        while lives > 0:
+        while True:
+            if lives == 0:
+                lives0()
+                print("".join(emptyview))
+                print("Sorry, you lost :( \nThe word was", word)
+                break
             userinput = str(input("\nGuess a letter: "))
+            while userinput in guess:
+                if lives == 6:
+                    lives6()
+                elif lives == 5:
+                    lives5()
+                elif lives == 4:
+                    lives4()
+                elif lives == 3:
+                    lives3()
+                elif lives == 2:
+                    lives2()
+                elif lives == 1:
+                    lives1()
+                elif lives == 0:
+                    lives0()
+                print("".join(emptyview))
+                userinput = input("\nYou have already guessed this letter, guess another one: ")
+                clear()
+            guess.append(userinput)
             if len(userinput)>=2:
-                if userinput==words:
+                if userinput==word:
                     print("Correct!, The word was",word)
                     replay = str(input(("Would you like to play again? Y/N: ")))
+
                     if  replay.lower()=="n":
                         break
                     elif replay.lower()=="y":
                         break
                         hangman()
-                elif userinput!=words:
+                elif userinput!=word:
                     print("Wrong!")
+                    lives -= 1
             elif len(userinput)==1:
                 guess.append(userinput) 
                 emptyview = [i if i in guess else '_' for i in word]
@@ -222,24 +249,21 @@ def hangman():
                 if userinput not in word:
                     print("bruh you silly, that letter is not in the word!")
                     lives -= 1
-                    if lives == 5:
-                        clear()
+                    if lives == 6:
+                        lives6()
+                    elif lives == 5:
                         lives5()
                     elif lives == 4:
-                        clear()
                         lives4()
                     elif lives == 3:
-                        clear()
                         lives3()
                     elif lives == 2:
-                        clear()
                         lives2()
                     elif lives == 1:
-                        clear()
                         lives1()
                     elif lives == 0:
-                        clear()
                         lives0()
+                    print("\nThe word was:", word)
                     print("You have", lives, "attempts left!\n")
                     print("".join(emptyview))
                 if emptyview == list(word):
