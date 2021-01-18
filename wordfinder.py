@@ -1,9 +1,9 @@
 import random
 from dictionary import _dict
 
-x = random.choice(_dict)
-print(x)
-
+y = random.choice(_dict)
+print(y)
+x = "canada"
 userinput = str(input("Guess a letter: "))
 #User Inputs Letters
 
