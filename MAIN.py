@@ -9,27 +9,126 @@ end = "\033[0m"
 
 words = ["fuck", "hello", "canada", "banana"]
 
-def easy():
-    head = ("    ___\n   |   |\n    ---")
-    arm1 = ("___")
-    arm2 = ("___")
-    body = ("     |\n  " + arm1 + "|" + arm2 + "\n     |\n     |")
-    leg1 = ("    /\ \n   /  \ ")
-    leg2 = ("  /    \ \n /      \ ")
-    print(head)
-    print(body)
-    print(leg1)
-    print(leg2)
+def lives6():
+    print("     _______________")
+    print("     |             |")
+    print("     |            ---")
+    print("     |           |   |")
+    print("     |            ---")
+    print("     |             |")
+    print("     |            /|\ ")
+    print("     |           / | \ ")
+    print("     |          /  |  \ ")
+    print("     |             |")
+    print("     |            / \ ")
+    print("     |           /   \ ")
+    print("     |          /     \ ")
+    print("     |")
+    print("-----------")
 
-def medium():
-    head = ("    ___\n   |   |\n    ---")
-    arm1 = ("___")
-    arm2 = ("___")
-    body = ("     |\n  " + arm1 + "|" + arm2 + "\n     |\n     |")
-    legs = ("    /\ \n   /  \ \n  /    \ \n /      \ ")
-    print(head)
-    print(body)
-    print(legs)
+def lives5():
+    print("     _______________")
+    print("     |             |")
+    print("     |            ---")
+    print("     |           |   |")
+    print("     |            ---")
+    print("     |             |")
+    print("     |            /|\ ")
+    print("     |           / | \ ")
+    print("     |          /  |  \ ")
+    print("     |             |")
+    print("     |              \ ")
+    print("     |               \ ")
+    print("     |                \ ")
+    print("     |")
+    print("-----------")
+
+def lives4():
+    print("     _______________")
+    print("     |             |")
+    print("     |            ---")
+    print("     |           |   |")
+    print("     |            ---")
+    print("     |             |")
+    print("     |            /|\ ")
+    print("     |           / | \ ")
+    print("     |          /  |  \ ")
+    print("     |             |")
+    print("     |")
+    print("     |")
+    print("     |")
+    print("     |")
+    print("-----------")
+
+def lives3():
+    print("     _______________")
+    print("     |             |")
+    print("     |            ---")
+    print("     |           |   |")
+    print("     |            ---")
+    print("     |             |")
+    print("     |             |\ ")
+    print("     |             | \ ")
+    print("     |             |  \ ")
+    print("     |             |")
+    print("     |")
+    print("     |")
+    print("     |")
+    print("     |")
+    print("-----------")
+
+def lives2():
+    print("     _______________")
+    print("     |             |")
+    print("     |            ---")
+    print("     |           |   |")
+    print("     |            ---")
+    print("     |             |")
+    print("     |             |")
+    print("     |             |")
+    print("     |             |")
+    print("     |             |")
+    print("     |")
+    print("     |")
+    print("     |")
+    print("     |")
+    print("-----------")
+
+def lives1():
+    print("     _______________")
+    print("     |             |")
+    print("     |          -------")
+    print("     |         | .   . |")
+    print("     |         |  ___  |")
+    print("     |         | |   | |")
+    print("     |          -------")
+    print("     |")
+    print("     |")
+    print("     |")
+    print("     |")
+    print("     |")
+    print("     |")
+    print("     |")
+    print("     |")
+    print("-----------")
+
+def lives0():
+    print("     _______________")
+    print("     |             |")
+    print("     |          -------")
+    print("     |         | x   x |")
+    print("     |         |       |")
+    print("     |         |  ___  |")
+    print("     |          -------")
+    print("     |")
+    print("     |")
+    print("     |")
+    print("     |")
+    print("     |")
+    print("     |")
+    print("     |")
+    print("     |")
+    print("-----------")
 
 #---------------------------------------------------------------------------------------------------------------------------------------
 #---------------------------------------------------------------------------------------------------------------------------------------
@@ -80,15 +179,73 @@ def hangman():
 
 
     if difficulty == "easy":
-        print("Really? Easy mode? noob. Anywho,\n")
-        wordnumber = random.randrange(0,3)
-        word = words[wordnumber]
+        
+        lives = 6
+        print("Really? Easy mode? noob. Anywho, you have", lives, "lives, good luck!\n")
+        word = random.choice(_dict)
         print(word)
-        guesses = ""
-
-        guesses += "_" * len(word)
-        print(guesses)
-          
+        guess = []
+        lives6()
+        
+        while lives > 0:
+            userinput = str(input("\nGuess a letter: "))
+            if len(userinput)>=2:
+                if userinput==words:
+                    print("Correct!, The word was",word)
+                    replay = str(input(("Would you like to play again? Y/N: ")))
+                    if  replay.lower()=="n":
+                        break
+                    elif replay.lower()=="y":
+                        break
+                        hangman()
+                elif userinput!=words:
+                    print("Wrong!")
+            elif len(userinput)==1:
+                guess.append(userinput) 
+                emptyview = [i if i in guess else '_' for i in word]
+                clear()
+                if lives == 6:
+                    lives6()
+                elif lives == 5:
+                    lives5()
+                elif lives == 4:
+                    lives4()
+                elif lives == 3:
+                    lives3()
+                elif lives == 2:
+                    lives2()
+                elif lives == 1:
+                    lives1()
+                elif lives == 0:
+                    lives0()
+                print("".join(emptyview))
+                if userinput not in word:
+                    print("bruh you silly, that letter is not in the word!")
+                    lives -= 1
+                    if lives == 5:
+                        clear()
+                        lives5()
+                    elif lives == 4:
+                        clear()
+                        lives4()
+                    elif lives == 3:
+                        clear()
+                        lives3()
+                    elif lives == 2:
+                        clear()
+                        lives2()
+                    elif lives == 1:
+                        clear()
+                        lives1()
+                    elif lives == 0:
+                        clear()
+                        lives0()
+                    print("You have", lives, "attempts left!\n")
+                    print("".join(emptyview))
+                if emptyview == list(word):
+                    print("".join(emptyview))
+                    print("You won!")
+                    break 
 
     elif difficulty == "medium":
         print("You choice difficulty: Medium, this is considered \"normal\" mode.\n")
@@ -105,42 +262,12 @@ def hangman():
 
    
           
-            #Function for drawing arm
-q = []
-def empty() :
-    for i in range(0 , len(x)):
-        q.append(" ")
+
 # find if letter is in the word and for those that arentnare replaced with blank
 
-
-
-easy()
+lives6()
 hangman()
 
-y = random.choice(_dict)
-guess = []
-x = "canada"
-
-while True:
-    userinput = str(input("Guess a letter: "))
-    if len(userinput)>=2:
-        if userinput==words:
-            print("Correct!, The word was",x)
-            replay = str(input(("Would you like to play again? Y/N: ")))
-            if  replay.lower()=="n":
-                break
-            elif replay.lower()=="y":
-                break
-                hangman()
-        elif userinput!=words:
-            print("Wrong!")
-    elif len(userinput)==1:
-        guess.append(userinput) 
-        emptyview = [i if i in guess else ' ' for i in x ] 
-        if emptyview == list(x):
-            print(emptyview)
-            print("You won!")
-            break   
-        
+  
 
 
