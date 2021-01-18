@@ -99,9 +99,8 @@ def hangman():
 
 x = random.choice(_dict)
 print(x)
-
+guess = []
 userinput = str(input("Guess a letter: "))
-guess.append(userinput)
 #User Inputs Letters
 while True:
     if len(userinput)>=2:
@@ -120,9 +119,8 @@ q = []
 def empty() :
     for i in range(0 , len(x)):
         q.append(" ")
-
-guess = []
-emptyview = [x if x in guess else ' ' for x in breakfast]
+# find if letter is in the word and for those that arentnare replaced with blank
+emptyview = [i if i in guess else ' ' for i in x ]
 
 print(emptyview)
 easy()
