@@ -7,10 +7,7 @@ yellow = "\033[1;33m"
 green = "\033[92m"
 
 end = "\033[0m"
-
-
-
-def lives6():
+def lives10():
     print("     _______________")
     print("     |             |")
     print("     |            ---")
@@ -20,14 +17,49 @@ def lives6():
     print("     |            /|\ ")
     print("     |           / | \ ")
     print("     |          /  |  \ ")
-    print("     |             |")
+    print("     |         /\  |  /\ ")
     print("     |            / \ ")
     print("     |           /   \ ")
     print("     |          /     \ ")
     print("     |")
     print("-----------")
 
-def lives5():
+def lives9():
+    print("     _______________")
+    print("     |             |")
+    print("     |            ---")
+    print("     |           |   |")
+    print("     |            ---")
+    print("     |             |    ")
+    print("     |            /|\   ")
+    print("     |           / | \  ")
+    print("     |          /  |  \ ")
+    print("     |         /\  |   ")
+    print("     |            / \ ")
+    print("     |           /   \ ")
+    print("     |          /     \ ")
+    print("     |")
+    print("-----------")
+
+
+def lives8():
+    print("     _______________")
+    print("     |             |")
+    print("     |            ---")
+    print("     |           |   |")
+    print("     |            ---")
+    print("     |             |")
+    print("     |            /|\ ")
+    print("     |           / | \ ")
+    print("     |          /  |  \ ")
+    print("     |             |   ")
+    print("     |            / \ ")
+    print("     |           /   \ ")
+    print("     |          /     \ ")
+    print("     |")
+    print("-----------")
+
+def lives7():
     print("     _______________")
     print("     |             |")
     print("     |            ---")
@@ -44,7 +76,7 @@ def lives5():
     print("     |")
     print("-----------")
 
-def lives4():
+def lives6():
     print("     _______________")
     print("     |             |")
     print("     |            ---")
@@ -61,7 +93,7 @@ def lives4():
     print("     |")
     print("-----------")
 
-def lives3():
+def lives5():
     print("     _______________")
     print("     |             |")
     print("     |            ---")
@@ -78,7 +110,7 @@ def lives3():
     print("     |")
     print("-----------")
 
-def lives2():
+def lives4():
     print("     _______________")
     print("     |             |")
     print("     |            ---")
@@ -95,7 +127,7 @@ def lives2():
     print("     |")
     print("-----------")
 
-def lives1():
+def lives3():
     print("     _______________")
     print("     |             |")
     print("     |          -------")
@@ -113,7 +145,24 @@ def lives1():
     print("     |")
     print("-----------")
 
-def lives0():
+def lives2():
+    print("     _______________")
+    print("     |             |")
+    print("     |          -------")
+    print("     |         | .   x |")
+    print("     |         |       |")
+    print("     |         |  ___  |")
+    print("     |          -------")
+    print("     |")
+    print("     |")
+    print("     |")
+    print("     |")
+    print("     |")
+    print("     |")
+    print("     |")
+    print("     |")
+    print("-----------")
+def lives1():
     print("     _______________")
     print("     |             |")
     print("     |          -------")
@@ -130,8 +179,23 @@ def lives0():
     print("     |")
     print("     |")
     print("-----------")
-
- 
+def lives0():
+    print("     _______________")
+    print("     |             |")
+    print("     |          -------")
+    print("     |         | x   x |")
+    print("     |         |       |")
+    print("     |         | xxxxx |")
+    print("     |          -------")
+    print("     |")
+    print("     |")
+    print("     |")
+    print("     |")
+    print("     |")
+    print("     |")
+    print("     |")
+    print("     |")
+    print("-----------")
 #---------------------------------------------------------------------------------------------------------------------------------------
 #---------------------------------------------------------------------------------------------------------------------------------------
 #---------------------------------------------------------------------------------------------------------------------------------------
@@ -182,13 +246,236 @@ def hangman():
 
     if difficulty == "easy":
         
-        lives = 6
+        lives = 10
         print("Really? Easy mode? noob. Anywho, you have", lives, "lives, good luck!\n")
         word = random.choice(_dict)
-        print(word)
+        print("you have ", lives, "attempts ")
+        guess = []
+        lives10()
+        e = len(word)
+        print('_ ' * e)
+    
+        while True:
+            if lives == 0:
+                lives0()
+                print("".join(emptyview))
+                print("Sorry, you lost :( \nThe word was", word)
+                break
+            userinput = str(input("\nGuess a letter: "))
+            while userinput in guess:
+                if lives == 10:
+                    lives10()
+                elif lives == 9:
+                    lives9()
+                elif lives == 8:
+                    lives8()
+                elif lives == 7:
+                    lives7()
+                elif lives == 6:
+                    lives6()
+                elif lives == 5:
+                    lives5()
+                elif lives == 4:
+                    lives4()
+                elif lives == 3:
+                    lives3()
+                elif lives == 2:
+                    lives2()
+                elif lives == 1:
+                    lives1()
+                elif lives == 0:
+                    lives0()
+                print("".join(emptyview))
+                userinput = input("\nYou have already guessed this letter, guess another one: ")
+                clear()
+            guess.append(userinput)
+            if len(userinput)>=2:
+                if userinput==word:
+                    print("Correct!, The word was",word)
+                    replay = str(input(("Would you like to play again? Y/N: ")))
+                    if  replay.lower()=="n":
+                        break
+                    elif replay.lower()=="y":
+                        break
+                        hangman()
+
+                elif userinput!=word:
+                    print("Wrong!")
+                    lives -= 1
+            elif len(userinput)==1:
+                guess.append(userinput) 
+                emptyview = [i if i in guess else '_' for i in word]
+                clear()
+                if lives == 10:
+                    lives10()
+                elif lives == 9:
+                    lives9()
+                elif lives == 8:
+                    lives8()
+                elif lives == 7:
+                    lives7()
+                elif lives == 6:
+                    lives6()
+                elif lives == 5:
+                    lives5()
+                elif lives == 4:
+                    lives4()
+                elif lives == 3:
+                    lives3()
+                elif lives == 2:
+                    lives2()
+                elif lives == 1:
+                    lives1()
+                elif lives == 0:
+                    lives0()
+                print("".join(emptyview))
+                if userinput not in word:
+                    print("bruh you silly, that letter is not in the word!")
+                    lives -= 1
+                if lives == 10:
+                    lives10()
+                elif lives == 9:
+                    lives9()
+                elif lives == 8:
+                    lives8()
+                elif lives == 7:
+                    lives7()
+                elif lives == 6:
+                    lives6()
+                elif lives == 5:
+                    lives5()
+                elif lives == 4:
+                    lives4()
+                elif lives == 3:
+                    lives3()
+                elif lives == 2:
+                    lives2()
+                elif lives == 1:
+                    lives1()
+                elif lives == 0:
+                    lives0()
+                    print("You have", lives, "attempts left!\n")
+                    print("".join(emptyview))
+                if emptyview == list(word):
+                    print("".join(emptyview))
+                    print("You won!")
+                   
+                    break
+
+
+    elif difficulty == "medium":
+        print("You choice difficulty: Medium, this is considered \"normal\" mode.\n")
+        lives = 8
+        print("you have ", lives, "attempts ")
+        word = random.choice(_dict)
+        guess = []
+        lives8()
+        e = len(word)
+        print('_ ' * e)
+        while True:
+            if lives == 0:
+                lives0()
+                print("".join(emptyview))
+                print("Sorry, you lost :( \nThe word was", word)
+                break
+            userinput = str(input("\nGuess a letter: "))
+            while userinput in guess:
+                if lives == 8:
+                    lives8()
+                elif lives == 7:
+                    lives7()
+                elif lives == 6:
+                    lives6()
+                elif lives == 5:
+                    lives5()
+                elif lives == 4:
+                    lives4()
+                elif lives == 3:
+                    lives3()
+                elif lives == 2:
+                    lives2()
+                elif lives == 1:
+                    lives1()
+                elif lives == 0:
+                    lives0()
+                print("".join(emptyview))
+                userinput = input("\nYou have already guessed this letter, guess another one: ")
+                clear()
+            guess.append(userinput)
+            if len(userinput)>=2:
+                if userinput==word:
+                    print("Correct!, The word was",word)
+                    replay = str(input(("Would you like to play again? Y/N: ")))
+                    if  replay.lower()=="n":
+                        break
+                    elif replay.lower()=="y":
+                        break
+                        hangman()
+
+                elif userinput!=word:
+                    print("Wrong!")
+                    lives -= 1
+            elif len(userinput)==1:
+                guess.append(userinput) 
+                emptyview = [i if i in guess else '_' for i in word]
+                clear()
+                if lives == 8:
+                    lives8()
+                elif lives == 7:
+                    lives7()
+                elif lives == 6:
+                    lives6()
+                elif lives == 5:
+                    lives5()
+                elif lives == 4:
+                    lives4()
+                elif lives == 3:
+                    lives3()
+                elif lives == 2:
+                    lives2()
+                elif lives == 1:
+                    lives1()
+                elif lives == 0:
+                    lives0()
+                print("".join(emptyview))
+                if userinput not in word:
+                    print("bruh you silly, that letter is not in the word!")
+                    lives -= 1
+                elif lives == 8:
+                    lives8()
+                elif lives == 7:
+                    lives7()
+                elif lives == 6:
+                    lives6()
+                elif lives == 5:
+                    lives5()
+                elif lives == 4:
+                    lives4()
+                elif lives == 3:
+                    lives3()
+                elif lives == 2:
+                    lives2()
+                elif lives == 1:
+                    lives1()
+                elif lives == 0:
+                    lives0()
+                    print("You have", lives, "attempts left!\n")
+                    print("".join(emptyview))
+                if emptyview == list(word):
+                    print("".join(emptyview))
+                    print("You won!")
+                   
+                    break
+    
+    elif difficulty == "hard":
+        print("Oh you trying Hard mode I see? Good luck chief!\n")
+        lives = 6
+        print("you have ", lives, "attempts ")
+        word = random.choice(_dict)
         guess = []
         lives6()
-        
+        e = len(word)
+        print('_ ' * e)
         while True:
             if lives == 0:
                 lives0()
@@ -250,21 +537,20 @@ def hangman():
                 if userinput not in word:
                     print("bruh you silly, that letter is not in the word!")
                     lives -= 1
-                    if lives == 6:
-                        lives6()
-                    elif lives == 5:
-                        lives5()
-                    elif lives == 4:
-                        lives4()
-                    elif lives == 3:
-                        lives3()
-                    elif lives == 2:
-                        lives2()
-                    elif lives == 1:
-                        lives1()
-                    elif lives == 0:
-                        lives0()
-                    print("\nThe word was:", word)
+                elif lives == 6:
+                    lives6()
+                elif lives == 5:
+                    lives5()
+                elif lives == 4:
+                    lives4()
+                elif lives == 3:
+                    lives3()
+                elif lives == 2:
+                    lives2()
+                elif lives == 1:
+                    lives1()
+                elif lives == 0:
+                    lives0()
                     print("You have", lives, "attempts left!\n")
                     print("".join(emptyview))
                 if emptyview == list(word):
@@ -272,13 +558,6 @@ def hangman():
                     print("You won!")
                    
                     break
-
-
-    elif difficulty == "medium":
-        print("You choice difficulty: Medium, this is considered \"normal\" mode.\n")
-    
-    elif difficulty == "hard":
-        print("Oh you trying Hard mode I see? Good luck chief!\n")
 
 
 
