@@ -8,6 +8,8 @@ yellow = "\033[1;33m"
 green = "\033[92m"
 
 end = "\033[0m"
+
+# def lives#() is the stick figure, the stick figure displayed corresponds to the user's lives
 def lives10():
     print("     _______________")
     print("     |             |")
@@ -197,9 +199,13 @@ def lives0():
     print("     |")
     print("     |")
     print("-----------")
+
 #---------------------------------------------------------------------------------------------------------------------------------------
 #---------------------------------------------------------------------------------------------------------------------------------------
 #---------------------------------------------------------------------------------------------------------------------------------------
+
+
+
 
 
 def hangman():
@@ -257,15 +263,21 @@ def hangman():
         lives10()
         e = len(word)
         print('_ ' * e)
-    
+        #emptyview is the code that displas the letters the user has correctly guessed
         emptyview = [i if i in guess else '_ ' for i in word]
+        
+        #the actual code that loops the hangman game
         while True:
+
+            #if the user lost,
             if lives == 0:
                 lives0()
                 print("Sorry, you lost :( \nThe word was", word)
                 killswitch()
             userinput = str(input("\nGuess a letter: "))
             clear()
+
+            #prints out the stickfigure corresponding to the user's lives
             while userinput in guess:
                 clear()
                 if lives == 10:
@@ -294,6 +306,8 @@ def hangman():
                 userinput = input("\nYou have already guessed this letter, guess another one: ")
                 clear()
             guess.append(userinput)
+
+            #if the user inputs more than 1 character, the user is attempting to guess the whole word.
             if len(userinput)>=2:
                 if userinput==word:
                     print("Correct!, The word was",word)
@@ -301,8 +315,11 @@ def hangman():
                 elif userinput!=word:
                     print("Wrong!")
                     lives -= 1
+
+            #if userguess is 1 character long
             elif len(userinput)==1:
                 guess.append(userinput) 
+                #if the user's guess is in the word, it adds it to emptyview
                 emptyview = [i if i in guess else '_ ' for i in word]
                 clear()
                 if lives == 10:
@@ -328,6 +345,8 @@ def hangman():
                 elif lives == 0:
                     lives0()
                 print("".join(emptyview))
+
+                #if userguess is incorrect
                 if userinput not in word:
                     clear()
                     print("bruh you silly, that letter is not in the word!")
@@ -356,12 +375,15 @@ def hangman():
                         lives0()
                     print("You have", lives, "attempts left!\n")
                     print("".join(emptyview))
+                
+                #if the user has guessed all the letters
                 if emptyview == list(word):
                     print("You won!")
                     killswitch()
                     break
 
 
+#all the same comments apply to medium and hard difficulty, I, Boiken Zafirati am just lazy
 
 
 
@@ -377,6 +399,7 @@ def hangman():
 
 
         while True:
+
             if lives == 0:
                 clear()
                 lives0()
@@ -384,6 +407,7 @@ def hangman():
                 print("Sorry, you lost :( \nThe word was", word)
                 killswitch()
             userinput = str(input("\nGuess a letter: "))
+
             while userinput in guess:
                 clear()
                 if lives == 8:
@@ -408,6 +432,7 @@ def hangman():
                 userinput = input("\nYou have already guessed this letter, guess another one: ")
                 clear()
             guess.append(userinput)
+
             if len(userinput)>=2:
                 if userinput==word:
                     print("Correct!, The word was",word)
@@ -415,6 +440,7 @@ def hangman():
                 elif userinput!=word:
                     print("Wrong!")
                     lives -= 1
+
             elif len(userinput)==1:
                 guess.append(userinput) 
                 emptyview = [i if i in guess else '_ ' for i in word]
@@ -438,6 +464,7 @@ def hangman():
                 elif lives == 0:
                     lives0()
                 print("".join(emptyview))
+
                 if userinput not in word:
                     clear()
                     print("bruh you silly, that letter is not in the word!")
@@ -462,6 +489,7 @@ def hangman():
                         lives0()
                     print("You have", lives, "attempts left!\n")
                     print("".join(emptyview))
+
                 if emptyview == list(word):
                     print("You won!")
                     killswitch()
@@ -484,12 +512,14 @@ def hangman():
 
 
         while True:
+
             if lives == 0:
                 lives0()
                 print("".join(emptyview))
                 print("Sorry, you lost :( \nThe word was", word)
                 killswitch()
             userinput = str(input("\nGuess a letter: "))
+
             while userinput in guess:
                 clear()
                 if lives == 6:
@@ -510,6 +540,7 @@ def hangman():
                 userinput = input("\nYou have already guessed this letter, guess another one: ")
                 clear()
             guess.append(userinput)
+
             if len(userinput)>=2:
                 if userinput==word:
                     print("Correct!, The word was",word)
@@ -517,6 +548,7 @@ def hangman():
                 elif userinput!=word:
                     print("Wrong!")
                     lives -= 1
+
             elif len(userinput)==1:
                 guess.append(userinput) 
                 emptyview = [i if i in guess else '_ ' for i in word]
@@ -536,6 +568,7 @@ def hangman():
                 elif lives == 0:
                     lives0()
                 print("".join(emptyview))
+
                 if userinput not in word:
                     clear()
                     print("bruh you silly, that letter is not in the word!")
@@ -556,6 +589,7 @@ def hangman():
                         lives0()
                     print("You have", lives, "attempts left!\n")
                     print("".join(emptyview))
+                    
                 if emptyview == list(word):
                     print("You won!")
                     killswitch()
@@ -565,7 +599,7 @@ def hangman():
 
 
 
-
+#killswitch thing
 def killswitch():
     while True:
         answer = input("Would you like to play again? y/n?\n")
