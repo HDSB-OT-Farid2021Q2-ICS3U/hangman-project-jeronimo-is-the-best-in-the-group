@@ -257,13 +257,11 @@ def hangman():
         lives10()
         e = len(word)
         print('_ ' * e)
-        print(word)
     
-
+        emptyview = [i if i in guess else '_ ' for i in word]
         while True:
             if lives == 0:
                 lives0()
-                print("".join(emptyview))
                 print("Sorry, you lost :( \nThe word was", word)
                 killswitch()
             userinput = str(input("\nGuess a letter: "))
@@ -305,7 +303,7 @@ def hangman():
                     lives -= 1
             elif len(userinput)==1:
                 guess.append(userinput) 
-                emptyview = [i if i in guess else '_' for i in word]
+                emptyview = [i if i in guess else '_ ' for i in word]
                 clear()
                 if lives == 10:
                     lives10()
@@ -376,7 +374,6 @@ def hangman():
         lives8()
         e = len(word)
         print('_ ' * e)
-        print(word)
 
 
         while True:
@@ -420,7 +417,7 @@ def hangman():
                     lives -= 1
             elif len(userinput)==1:
                 guess.append(userinput) 
-                emptyview = [i if i in guess else '_' for i in word]
+                emptyview = [i if i in guess else '_ ' for i in word]
                 clear()
                 if lives == 8:
                     lives8()
@@ -484,7 +481,6 @@ def hangman():
         lives6()
         e = len(word)
         print('_ ' * e)
-        print(word)
 
 
         while True:
@@ -523,7 +519,7 @@ def hangman():
                     lives -= 1
             elif len(userinput)==1:
                 guess.append(userinput) 
-                emptyview = [i if i in guess else '_' for i in word]
+                emptyview = [i if i in guess else '_ ' for i in word]
                 clear()
                 if lives == 6:
                     lives6()
